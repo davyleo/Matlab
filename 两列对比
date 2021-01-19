@@ -1,0 +1,23 @@
+clc, clear;
+mkdir('result');  %新建一个用于存放目标文件的文件夹
+f = dir("data");    %把数据文件夹下的文件名存入数组，文件夹名根据实际更改
+
+for i = 3: length(f)
+    filename = 'data/' +string(f(i).name);  %依次处理data文件夹下的文件
+    [num]=readmatrix(filename); %文件数据导入
+    L = length(num);    
+    R = [];
+    for i = 1 : L   %发现递减，中断循环，并记录递减位置
+        if (num(i,2) > num(i+1,2))   %这里的2要根据实际文件数据所在列而更改
+            a = i;
+            break
+        end
+    end
+    for i = a : L       %从递减位置计算F列与C列差值的绝对值
+        R =[R ; abs(num(i,3) - num(i,6))] ;
+    end
+    if (max(R) > 0.6)    %判断出现这个情况，把原文件保存到另一个文件夹里
+        copyfile(filename, 'result\');
+    end
+    
+end
