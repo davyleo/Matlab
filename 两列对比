@@ -10,19 +10,19 @@ for i = 3 : length(f)
     a=1;
     b=1;
         for i = 1 : L   %发现递减，中断循环，并记录递减位置
-        if num.RALTR(i) =2600   
+        if num.RALTR(i) ==2600   
             a = i;
             break
         end
     end
     for i=a:L
-    if num.RALTR{i}<2600
+    if num.RALTR(i)<2600
     b=i;
     break
     end
     end
     for i = b : L       %从递减位置计算Value_no_1与Value_no_2差值的绝对值
-        R =[R ; abs(num.Value_no_1(i) - num.Value_no_2(i))] ;
+        R =[R ; abs(num.ALT_STD(i) - num.ALT_STD2(i))] ;
     end
     if (max(R) > 100)    %判断出现这个情况，把原文件保存到另一个文件夹里
         copyfile(filename, 'result\');
