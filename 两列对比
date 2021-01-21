@@ -1,10 +1,13 @@
+  
 clc, clear;
-mkdir('result');    %新建一个用于存放目标文件的文件夹
+mkdir('result');    %%新建一个用于存放目标文件的文件夹
 f = dir("data");    %把数据文件夹下的文件名存入数组，文件夹名根据实际更改
 
 for i = 3 : length(f)
-    filename = 'data/' +string(f(i).name);  %依次处理data文件夹下的文件
-    [num]=readtable(filename); %文件数据导入为表格
+    filename = 'data/' +string(f(i).name);  %依次处理data文件夹下的文件?
+    opts = detectImportOptions(filename);
+    opts.SelectedVariableNames = {'RALTR','ALT_STD','ALT_STD2'};
+    [num]=readtable(filename,opts); %文件数据导入为表格
     L = height(num);    %表格高度
     R = [];
     a=1;
@@ -24,7 +27,7 @@ for i = 3 : length(f)
     for i = b : L       %从递减位置计算Value_no_1与Value_no_2差值的绝对值
         R =[R ; abs(num.ALT_STD(i) - num.ALT_STD2(i))] ;
     end
-    if (max(R) > 100)    %判断出现这个情况，把原文件保存到另一个文件夹里
+    if (max(R) < 100)    %判断出现这个情况，把原文件保存到另一个文件夹里
         copyfile(filename, 'result\');
     end
 end
