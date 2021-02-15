@@ -1,0 +1,21 @@
+clc;clear;clear all;
+%读取excel数据
+sx=xlsread('D:1HSQHSQFilesmatlab files20200605_shaixuan.xlsx');
+u=unique(sx(:,1));%找出第1列中所有不同的元素或数值
+ 
+i=1;%设置起始数值为1
+%下面开始循环
+for n=1:size(u) %设置循环次数为第1列中不同元素个数
+    a=u(n);%将u中每个不同数值依次赋值给a
+    c=find(sx(:,1)==a);%找到excel数据sx中所有第一列等于a的行数
+    b=sx(c,2:3);%根据c的行数找到第2列和3列的数据赋给b
+    eval(['Re_',num2str(a),'=','b']);%根据不同a值筛选出数据
+    
+    scatter(b(:,1),b(:,2)); %绘制散点图
+    hold on
+    
+    legend_str{n}=['Re' num2str(a)]; %在循环中根据不同a值设置每组数据坐标轴图例
+ 
+    i=i+1;
+end
+legend(legend_str); %设置完整的坐标轴图例
