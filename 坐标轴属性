@@ -1,0 +1,72 @@
+%set(ha,'xtick',v)%根据一维数组v设置x轴上刻度标记位置
+%set(ha,'ytick',v)%根据一维数组v设置y轴上刻度标记位置
+%set(ha,'ztick',v)%根据一维数组v设置z轴上刻度标记位置
+clc,clear,close all
+x=linspace(0,50,51);
+y=x+cos(x);
+plot(x,y)
+ha=gca
+x0=0:10:50;
+y0=x0+cos(x0);
+set(ha,'xtick',x0);
+set(ha,'ytick',y0);
+set(ha,'xlim',[-10,60])
+set(ha,'ylim',[-10,60])
+hold on
+plot(x0,y0,'*b')
+grid on
+
+%set(ha,'xscale','linear')%将x轴上刻度单位设置为线性坐标型
+%set(ha,'xscale','log')%将x轴上刻度单位设置为对数坐标型
+%set(ha,'yscale','linear')%将y轴上刻度单位设置为线性坐标型
+%set(ha,'yscale','log')%将y轴上刻度单位设置为对数坐标型
+%set(ha,'zscale','linear')%将z轴上刻度单位设置为线性坐标型
+%set(ha,'zscale','log')%将z轴上刻度单位设置为对数坐标型
+
+x=linspace(-6,2,81);
+n=x.^2+4*x+1;
+y=10.^n;
+plot(x,y,'*r-');
+ha=gca;
+set(ha,'yscale','log')
+
+%set(ha,'xlim',[x1,x2])%将x轴上的取值范围设置为[x1,x2]
+%set(ha,'ylim',[y1,y2])%将y轴上的取值范围设置为[y1,y2]
+%set(ha,'zlim',[z1,z2])%将z轴上的取值范围设置为[z1,z2]
+
+clc,clear,close all;
+x=linspace(0,50,51);
+y=x+cos(x);
+plot(x,y,'r--')
+ha=gca;
+set(ha,'xlim',[-10,60])
+set(ha,'ylim',[-10,60])
+
+%set(ha,'xdir','normal')%将x轴上的坐标值增加的方向为正方向
+%set(ha,'xdir','reverse')%将x轴上的坐标值增加的方向为反方向
+%set(ha,'ydir','normal')%将y轴上的坐标值增加的方向为正方向
+%set(ha,'ydir','reverse')%将y轴上的坐标值增加的方向为反方向
+%set(ha,'zdir','normal')%将z轴上的坐标值增加的方向为正方向
+%set(ha,'zdir','reverse')%将z轴上的坐标值增加的方向为反方向
+
+clc,clear,close all;
+x=linspace(0,25,51);
+y=exp(-0.2*x).*cos(x);
+plot(x,y,'r')
+ha=gca;
+set(ha,'xdir','reverse');
+
+%set(ha,'xgrid','on') %添加分割x轴的坐标网线
+%set(ha,'xgrid','off') %删除分割x轴的坐标网线
+%set(ha,'ygrid','on') %添加分割y轴的坐标网线
+%set(ha,'ygrid','off') %删除分割y轴的坐标网线
+%set(ha,'zgrid','on') %添加分割z轴的坐标网线
+%set(ha,'zgrid','off') %删除分割z轴的坐标网线
+
+clc,clear,close all;
+x=linspace(0,7,81);
+n=10*sin(8*x)+5*cos(5*x);
+y=10.^n;
+plot(x,y,'.r--');
+ha=gca;
+set(ha,'ygrid','on')
